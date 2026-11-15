@@ -3,183 +3,216 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ruta Kotlin + Jetpack Compose</title>
-<style>
-:root{--bg:#f2f5f3;--card:#fff;--ink:#17202a;--mut:#56626e;--line:#cfd8d3;--acc:#1b7f5c;--acc2:#fff3c4;--code:#102a2a;--codeink:#d8f3e6}
-@media (prefers-color-scheme:dark){:root{--bg:#10171a;--card:#182126;--ink:#e8eef0;--mut:#9fb0b8;--line:#2c3a40;--acc:#4cc99a;--acc2:#3a3416;--code:#0a1214;--codeink:#c9efe0}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,"Segoe UI",Roboto,sans-serif;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:28px 28px;background-attachment:fixed}
-header,main{max-width:900px;margin:0 auto;padding:16px}
-h1{font-size:1.9rem;margin:.2em 0}
-h2{margin:0;font-size:1.3rem}
-h3{margin:1em 0 .3em;font-size:1rem}
-.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;margin:14px 0}
-.bar{height:12px;background:var(--line);border-radius:6px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--acc);width:0;transition:width .3s}
-.mut{color:var(--mut);font-size:.9rem}
-button{font:inherit;padding:7px 12px;border:1px solid var(--acc);background:transparent;color:var(--acc);border-radius:8px;cursor:pointer}
-button:hover,button:focus-visible{background:var(--acc);color:var(--bg)}
-details>summary{cursor:pointer;font-weight:600}
-.ph>summary{font-size:1.1rem;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.pill{font-size:.8rem;background:var(--acc2);padding:2px 8px;border-radius:99px;font-weight:400}
-label.t{display:flex;gap:8px;align-items:flex-start;padding:4px 0}
-label.t input{margin-top:5px;width:18px;height:18px;accent-color:var(--acc);flex:none}
-label.t input:checked+span{text-decoration:line-through;color:var(--mut)}
-.proj{background:var(--acc2);border-radius:8px;padding:10px 12px}
-.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0}
-.flow b{border:2px solid var(--acc);border-radius:8px;padding:4px 10px;font-weight:600;font-size:.9rem;background:var(--card)}
-.flow em{color:var(--acc);font-style:normal;font-weight:700}
-pre{background:var(--code);color:var(--codeink);padding:10px;border-radius:8px;overflow-x:auto;font-size:.85rem;margin:6px 0}
-textarea{width:100%;min-height:70px;font:inherit;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}
-.q{margin:6px 0}.q p{margin:2px 0}
-a{color:var(--acc)}
-#cards{display:none}
-.cd{border:2px dashed #555;border-radius:8px;padding:10px;height:7cm;break-inside:avoid;overflow:hidden}
-.cd h4{margin:0 0 4px}.cd small{color:#555}
-@media print{
- body{background:#fff;color:#000}
- body.pc header,body.pc main{display:none}
- body.pc #cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0}
- body:not(.pc) button{display:none}
- .cd{background:#fff;color:#000}.cd pre{background:#eee;color:#000}
-}
-@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
-</style>
+<title>Mi Aprendizaje — Kotlin + Jetpack Compose | Inglés para entrevistas</title>
+<meta name="description" content="Rutas de aprendizaje estructuradas y verificables: Kotlin con Jetpack Compose (Android) e inglés para entrevistas de ingeniería de software. Con progreso guardado, pronunciación auditable y fuentes oficiales citadas.">
+<meta name="author" content="Eliasib C. — Ingeniero de Sistemas">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Mi Aprendizaje — Kotlin + Jetpack Compose | Inglés para entrevistas">
+<meta property="og:description" content="Dos rutas de aprendizaje con principio y fin: Kotlin con Jetpack Compose e inglés para entrevistas de ingeniería de software.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/logo.svg">
+<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-<header>
-<h1>Ruta Kotlin + Jetpack Compose</h1>
-<p class="mut">9 fases con fin claro, de «ya sé programar» a «publico mi propia app». Cada fase tiene un proyecto útil (puesto de frutas y mensajero), preguntas de autoevaluación, notas y tarjetas imprimibles.</p>
-<div class="box">
- <div class="bar"><i id="gbar"></i></div>
- <p id="gtxt" style="margin:8px 0 0"></p>
- <p class="mut" style="margin:6px 0">Tu avance se guarda en este navegador (localStorage). Si borras datos del navegador se pierde: usa «Exportar» de vez en cuando.</p>
- <button onclick="exportar()">Exportar avance</button>
- <button onclick="document.getElementById('imp').click()">Importar avance</button>
- <button onclick="imprimir()">Imprimir tarjetas</button>
- <button onclick="if(confirm('¿Borrar todo tu avance?')){localStorage.removeItem(K);S={};render()}">Reiniciar</button>
- <input id="imp" type="file" accept=".json" hidden>
-</div>
+
+<header class="site-head">
+  <div class="head-inner">
+    <a class="brand" href="#/inicio">
+      <img src="assets/img/logo.svg" alt="Logotipo de Mi Aprendizaje" width="40" height="40">
+      <span>
+        <b>Mi Aprendizaje</b>
+        <span>Rutas técnicas con principio y fin</span>
+      </span>
+    </a>
+    <nav class="nav" role="tablist" aria-label="Rutas de aprendizaje">
+      <button type="button" role="tab" data-tab="inicio" aria-selected="true">Inicio</button>
+      <button type="button" role="tab" data-tab="kotlin" aria-selected="false">Kotlin + Compose</button>
+      <button type="button" role="tab" data-tab="ingles" aria-selected="false">Inglés para entrevistas</button>
+    </nav>
+  </div>
 </header>
-<main id="main"></main>
-<section id="cards"></section>
-<main>
-<div class="box">
-<h2>Fuentes oficiales</h2>
-<p class="mut">Verificadas con búsqueda el 15-nov-2026: las dos primeras describen la estructura del curso de Google en que se basa esta ruta. El resto son páginas raíz oficiales: navega desde ahí al tema indicado, porque las rutas internas cambian.</p>
-<ul>
-<li><a href="https://developer.android.com/courses/android-basics-compose/course" target="_blank" rel="noopener">Android Basics with Compose (curso oficial de Google)</a></li>
-<li><a href="https://developer.android.com/courses/android-basics-compose-firebase/course" target="_blank" rel="noopener">Android Basics with Compose and Firebase (Auth, Firestore)</a></li>
-<li><a href="https://developer.android.com/modern-android-development" target="_blank" rel="noopener">Modern Android Development (guía general y samples)</a></li>
-<li><a href="https://developer.android.com/compose" target="_blank" rel="noopener">Jetpack Compose (documentación)</a></li>
-<li><a href="https://kotlinlang.org/docs/home.html" target="_blank" rel="noopener">Kotlin (documentación oficial)</a></li>
-<li><a href="https://firebase.google.com/docs/auth" target="_blank" rel="noopener">Firebase Authentication</a></li>
-<li><a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages (documentación)</a></li>
-</ul>
-<h3>¿Puedo publicar este HTML en GitHub?</h3>
-<p>Sí. GitHub Pages es un hosting de sitios <b>estáticos</b>: toma HTML, CSS y JS de un repositorio y los publica. No ejecuta código de servidor (PHP, Ruby, Python), por eso no sirve para sistemas con backend propio, pero para esta página es perfecto. Pasos: crea un repo público (en el plan gratis Pages exige repo público), sube este archivo con el nombre <code>index.html</code>, y en <i>Settings → Pages</i> elige la rama a publicar. Detalle exacto en la documentación enlazada. Tu progreso queda en cada navegador/dispositivo por separado, no en GitHub.</p>
-</div>
+
+<!-- ============================ PORTADA ============================ -->
+<main id="vista-inicio" class="view active">
+  <div class="wrap">
+
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Dos rutas · Una metodología</span>
+        <h1>Aprender con orden, no con videos al azar</h1>
+        <p class="lead">Este sitio reúne dos rutas de aprendizaje con principio y fin: <b>Kotlin con Jetpack Compose</b> para llegar a publicar una app Android, e <b>inglés para entrevistas de ingeniería de software</b> para presentar-te a una vacante sin depender de tu espontaneidad en el idioma.</p>
+        <p class="lead">Ambas tienen fases numeradas, un proyecto por fase, autoevaluación, tarjetas de memoria y progreso guardado en tu navegador. Todo el contenido importante cita su fuente, y lo que no se puede verificar no se escribe.</p>
+        <div class="toolbar">
+          <button type="button" class="btn" data-tab="kotlin">Empezar por Kotlin</button>
+          <button type="button" class="btn eng" data-tab="ingles">Empezar por inglés</button>
+        </div>
+      </div>
+      <img class="hero-art" src="assets/img/hero-kotlin.svg" alt="Ilustración: un teléfono con una interfaz de Jetpack Compose y una ventana de código Kotlin" width="420" height="300">
+    </section>
+
+    <section class="grid-2" aria-label="Rutas disponibles">
+      <article class="route-card">
+        <span class="tag">Rama: aplicaciones móviles</span>
+        <h3>Kotlin + Jetpack Compose</h3>
+        <p>9 fases: de los fundamentals de Kotlin a una app de mensajero con login, base de datos local, autenticación con Firebase y publicación. Cada fase tiene su proyecto y su autoevaluación.</p>
+        <p class="small muted">Incluye: cómo ver la vista previa mientras diseñas (<code>@Preview</code>, modo interactivo, Live Edit) y por qué la vista previa con Firebase debe usar datos falsos a propósito.</p>
+        <button type="button" class="btn" data-tab="kotlin">Abrir la ruta</button>
+        <p class="meta">Fuente base: curso oficial <i>Android Basics with Compose</i> (8 unidades) y la documentación de Android Developers.</p>
+      </article>
+
+      <article class="route-card eng">
+        <span class="tag eng">Rama: preparación profesional</span>
+        <h3>Inglés para entrevistas</h3>
+        <p>10 etapas: el mapa de la entrevista, tu presentación de 60 segundos, el método STAR, 12 preguntas de conducta reales, preguntas hipotéticas, tus preguntas para el entrevistador, vocabulario técnico con IPA y audio, errores de hispanohablantes, fichas de memoria y seguimiento.</p>
+        <p class="small muted">Cada frase tiene botón de audio con voz inglesa. No es inglés conversacional: es el inglés de una entrevista técnica.</p>
+        <button type="button" class="btn eng" data-tab="ingles">Abrir la ruta</button>
+        <p class="meta">Fuentes base: Google re:Work, Grow with Google, MIT CAPD y Cambridge Dictionary.</p>
+      </article>
+    </section>
+
+    <section class="box">
+      <h2>Cómo se construye este sitio</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Reglas de contenido</h3>
+          <ul>
+            <li><b>Nada sin fuente.</b> Cada fase y cada etapa declaran su fuente base y, cuando aplica, enlazan la fuente primaria.</li>
+            <li><b>Nada inventado.</b> Las frases de entrevista que se practican son literales de las fuentes citadas; los guiones que son modelos mienten como tales y están marcados.</li>
+            <li><b>Nada desactualizado.</b> Las enlaces se verificaron el <b>15 de noviembre de 2026</b>; la numeración de unidades corresponde al curso oficial vigente.</li>
+            <li><b>Si no existe, no se escribe.</b> Cuando algo no se puede comprobar o homologar, no aparece: se omite o se deja marcado como «investiga».</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cómo se avanza</h3>
+          <ul>
+            <li>Marca los temas, el proyecto y la autoevaluación de cada fase: el progreso es un porcentaje real, no decorativo.</li>
+            <li>Escribe tus notas: se guardan junto al resto del avance en tu navegador.</li>
+            <li>En inglés, usa las <b>fichas de memoria</b> con repetición espaciada: 1, 2, 4 y 8 días.</li>
+            <li>Exporta tu avance de vez en cuando: si borras los datos del navegador, lo pierdes.</li>
+            <li>Imprime las tarjetas: salen limpias en papel, listas para el revising.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Fuentes verificadas</h2>
+      <p class="muted">Enlaces comprobados el 15-nov-2026. La numeración de unidades del curso de Android corresponde a la versión vigente del curso oficial (8 unidades).</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Fuente</th><th>Para qué se usa en este sitio</th></tr></thead>
+          <tbody>
+            <tr><td><a href="https://developer.android.com/courses/android-basics-compose/course" target="_blank" rel="noopener">Android Basics with Compose</a></td><td>Estructura de la ruta Kotlin: 8 unidades, codelabs y proyectos de cada unidad.</td></tr>
+            <tr><td><a href="https://developer.android.com/courses/android-basics-compose-firebase/course" target="_blank" rel="noopener">Android Basics with Compose and Firebase</a></td><td>Autenticación, Firestore y el patrón de datos de prueba para la fase de Firebase.</td></tr>
+            <tr><td><a href="https://developer.android.com/develop/ui/compose/tooling/previews" target="_blank" rel="noopener">Vistas previas componibles</a> · <a href="https://developer.android.com/develop/ui/compose/tooling/iterative-development" target="_blank" rel="noopener">Live Edit</a></td><td>Cómo ver la pantalla mientras se diseña: <code>@Preview</code>, modo interactivo, ejecución en dispositivo y Live Edit con sus límites reales.</td></tr>
+            <tr><td><a href="https://developer.android.com/topic/architecture/data-layer" target="_blank" rel="noopener">Capa de datos</a> · <a href="https://developer.android.com/topic/architecture/ui-layer" target="_blank" rel="noopener">Capa de UI</a></td><td>Patrón de repositorio con interfaces, ViewModel, UiState y flujo unidireccional.</td></tr>
+            <tr><td><a href="https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices" target="_blank" rel="noopener">Google re:Work — entrevista estructurada</a></td><td>Los tres atributos evaluados, la escala de calificación, la diferencia entre pregunta de conducta e hipotética, el ejemplo publicado y las follow-up questions.</td></tr>
+            <tr><td><a href="https://grow.google/grow-your-career/articles/interview-tips/" target="_blank" rel="noopener">Grow with Google — cómo preparar una entrevista</a></td><td>Los cuatro tipos de pregunta, el método STAR, la presentación de 30–60 segundos, las preguntas de referencia y el seguimiento en 24 horas.</td></tr>
+            <tr><td><a href="https://capd.mit.edu/resources/the-star-method-for-behavioral-interviews/" target="_blank" rel="noopener">MIT CAPD — el método STAR</a></td><td>Reparto del tiempo entre las cuatro partes de STAR, hablar en primera persona y el banco de 3 a 5 historias.</td></tr>
+            <tr><td><a href="https://dictionary.cambridge.org/grammar/" target="_blank" rel="noopener">Cambridge Dictionary</a> · <a href="https://dictionary.cambridge.org/grammar/british-grammar/" target="_blank" rel="noopener">Cambridge English Grammar</a></td><td>Transcripciones IPA del vocabulario técnico y las normas de preposición, gerundio, artículos y concordancia usadas en la tabla de errores.</td></tr>
+            <tr><td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API" target="_blank" rel="noopener">MDN — Web Speech API</a></td><td>La base técnica del botón de audio: <code>SpeechSynthesis</code> con voz inglesa, su compatibilidad y sus límites.</td></tr>
+            <tr><td><a href="https://kotlinlang.org/docs/home.html" target="_blank" rel="noopener">kotlinlang.org</a> · <a href="https://firebase.google.com/docs/auth" target="_blank" rel="noopener">Firebase Auth</a> · <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener">GitHub Pages</a></td><td>Referencia del lenguaje, documentación del servicio de autenticación y publicación del sitio.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="box">
+      <h2>Lo que sigue en camino</h2>
+      <p class="muted">La idea es que este sitio crezca por ramas, sin meter contenido a la fuerza. Estas son las candidatas; ninguna está publicada todavía:</p>
+      <div class="grid-3">
+        <div class="route-card" style="border-top-color:var(--line)">
+          <span class="tag gray">No disponible todavía</span>
+          <h3>Bases de datos y SQL</h3>
+          <p>Del <code>SELECT</code> al diseño de un modelo normalizado, con ejercicios sobre datos reales.</p>
+        </div>
+        <div class="route-card" style="border-top-color:var(--line)">
+          <span class="tag gray">No disponible todavía</span>
+          <h3>DevOps y nube</h3>
+          <p>Docker, CI/CD, observabilidad y despliegue, con la misma estructura por fases.</p>
+        </div>
+        <div class="route-card" style="border-top-color:var(--line)">
+          <span class="tag gray">No disponible todavía</span>
+          <h3>Algoritmos y estructuras de datos</h3>
+          <p>Preparar la parte técnica de una entrevista de programación, con ejercicios verificables.</p>
+        </div>
+      </div>
+      <p class="muted small">Cada rama nueva se publica solo cuando tenga contenido completo y con fuentes, no como un esqueleto vacío.</p>
+    </section>
+
+  </div>
 </main>
-<script>
-const K='ruta-kotlin-compose-v1';
-let S={};try{S=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){S={}}
-function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
 
-const P=[
-{n:'Fase 0',t:'Kotlin para quien viene de Visual Basic',goal:'Leer y escribir Kotlin básico en Android Studio.',
-proj:'Programa de consola: calcula el total de una compra de frutas con una lista de precios.',
-flow:['Variable','Función','Lista','Bucle','Resultado'],
-topics:['Instalar Android Studio y correr un proyecto en emulador','val vs var (inmutable vs mutable) frente a Dim de VB','Tipos, String templates y null safety (String?, ?. y ?:)','Funciones con parámetros por defecto y nombrados','if y when como expresiones','List, MutableList, Map, for y while','Lambdas y filter / map / sumOf','Clases y data class'],
-q:[['¿Diferencia entre val y var?','val no se reasigna; var sí.'],['¿Qué hace el operador ?: ?','Da un valor alterno cuando la expresión de la izquierda es null.'],['¿Para qué sirve una data class?','Para guardar datos; genera equals, copy y toString.']],
-cards:[['val / var','val precio = 500\nvar total = 0'],['Null safety','val n: String? = null\nn?.length ?: 0'],['Lambda','frutas.filter { it.precio > 1000 }']],
-src:'Curso Google, Unit 1 (Kotlin basics) y kotlinlang.org'},
-{n:'Fase 1',t:'Compose básico: tu primera pantalla',goal:'Construir interfaces estáticas sin XML.',
-proj:'Tarjeta digital del puesto de frutas: logo, nombre, teléfono y dirección.',
-flow:['@Composable','Column / Row','Modifier','Preview'],
-topics:['Qué es un composable y por qué reemplaza al XML','Text, Image, Icon','Column, Row y Box','Modifier: padding, size, fillMaxWidth, background','Arrangement y Alignment','@Preview para ver sin emulador','Recursos: strings.xml e imágenes en res/drawable'],
-q:[['¿Qué anotación define un composable?','@Composable.'],['¿Cuándo se usa Box?','Para apilar elementos uno sobre otro.'],['¿Qué hace Modifier?','Cambia tamaño, espacio, fondo y comportamiento de un composable.']],
-cards:[['Composable','@Composable\nfun Saludo(n: String){\n  Text("Hola $n")\n}'],['Column','Column {\n  Text("A")\n  Text("B")\n}'],['Modifier','Modifier.padding(16.dp)\n  .fillMaxWidth()']],
-src:'Curso Google, Unit 1 Pathway 3 (Business card app)'},
-{n:'Fase 2',t:'Estado: que la pantalla reaccione',goal:'Entender recomposición y estado.',
-proj:'Calculadora de venta: escribes kilos y precio, ves el total al instante.',
-flow:['Usuario escribe','Estado cambia','Recomposición','UI nueva'],
-topics:['Qué es el estado y qué es recomposición','remember y mutableStateOf','TextField y onValueChange','Button y onClick','State hoisting (elevar el estado al padre)','Convertir texto a número de forma segura (toDoubleOrNull)'],
-q:[['¿Por qué se usa remember?','Para que el valor sobreviva a las recomposiciones.'],['¿Qué es state hoisting?','Mover el estado al padre y pasar valor + evento al hijo.'],['¿Qué pasa si cambia un State?','Compose vuelve a dibujar los composables que lo leen.']],
-cards:[['Estado','var kg by remember {\n  mutableStateOf("")\n}'],['TextField','TextField(value = kg,\n  onValueChange = { kg = it })'],['Hoisting','fun Campo(v: String,\n  onChange: (String)->Unit)']],
-src:'Curso Google, Unit 2 (Tip calculator, Understanding state in Compose)'},
-{n:'Fase 3',t:'Listas y Material 3',goal:'Mostrar colecciones y dar estilo coherente.',
-proj:'Catálogo de frutas con nombre, precio y botón «agregar al pedido».',
-flow:['Lista de datos','LazyColumn','Item','Tema M3'],
-topics:['LazyColumn e items()','Card, ListItem y Divider','Scaffold con TopAppBar','MaterialTheme: colores, tipografía, formas','Modo oscuro','Animación simple (animateContentSize)'],
-q:[['¿Por qué LazyColumn y no Column?','Solo compone lo visible; es eficiente con listas largas.'],['¿Para qué sirve Scaffold?','Estructura de pantalla: barra superior, contenido, botón flotante.'],['¿Dónde se define el color primario?','En el tema (MaterialTheme / ColorScheme).']],
-cards:[['LazyColumn','LazyColumn {\n  items(frutas) { f ->\n    Text(f.nombre)\n  }\n}'],['Scaffold','Scaffold(topBar = {...}) {\n  padding -> ...\n}'],['Tema','MaterialTheme.colorScheme\n  .primary']],
-src:'Curso Google, Unit 2 (Affirmations, Material Theming, Superheroes)'},
-{n:'Fase 4',t:'Login + navegación entre pantallas',goal:'Tu primer flujo completo: Login → Bienvenida.',
-proj:'Login del mensajero (usuario y clave con validación local) que abre una pantalla de bienvenida con su nombre.',
-flow:['LoginScreen','Valida','navigate()','HomeScreen'],
-topics:['NavController y NavHost','Definir rutas (composable("login"))','Navegar con navigate() y evitar volver al login (popUpTo)','Pasar un argumento (nombre del usuario) a otra pantalla','Validar campos vacíos y mostrar error en el TextField','Ocultar la clave (PasswordVisualTransformation)','Investiga: rutas type-safe en la versión actual de Navigation Compose'],
-q:[['¿Qué es NavHost?','El contenedor que muestra la pantalla de la ruta actual.'],['¿Cómo evitas volver al login con «atrás»?','Con popUpTo + inclusive al navegar a Home.'],['¿Por qué no guardar la clave real en el código?','Cualquiera puede decompilar el APK; la validación real va en un servidor (Fase 7).']],
-cards:[['NavHost','NavHost(nav, "login") {\n  composable("login"){...}\n  composable("home"){...}\n}'],['Navegar','nav.navigate("home")'],['Clave','visualTransformation =\n PasswordVisualTransformation()']],
-src:'Curso Google, Unit 4 (Navigation in Jetpack Compose)'},
-{n:'Fase 5',t:'Arquitectura: ViewModel y UiState',goal:'Separar lógica de interfaz.',
-proj:'Rehacer el login con LoginViewModel y un LoginUiState.',
-flow:['UI','Evento','ViewModel','StateFlow','UI'],
-topics:['Por qué el estado en el composable se pierde al rotar la pantalla','ViewModel','Data class UiState (usuario, clave, error, cargando)','StateFlow y collectAsState','Flujo unidireccional de datos (UDF)','Pruebas unitarias del ViewModel (básico)'],
-q:[['¿Qué problema resuelve ViewModel?','Conserva el estado ante cambios de configuración como rotar.'],['¿Qué es UDF?','El estado baja a la UI y los eventos suben al ViewModel.'],['¿Qué expone el ViewModel?','Un StateFlow de solo lectura con el UiState.']],
-cards:[['UiState','data class LoginUi(\n val user:String="",\n val error:String?=null)'],['ViewModel','class LoginVm: ViewModel() {\n private val _ui =\n  MutableStateFlow(LoginUi())\n}'],['UDF','Estado ↓  Eventos ↑']],
-src:'Curso Google, Unit 4 (ViewModel and State in Compose)'},
-{n:'Fase 6',t:'Datos locales con Room',goal:'Que la app recuerde datos sin internet.',
-proj:'Agenda de clientes del mensajero: nombre, dirección, estado de entrega.',
-flow:['Pantalla','ViewModel','Repository','DAO','Room (SQLite)'],
-topics:['SQL básico (INSERT, SELECT, UPDATE, DELETE)','Room: @Entity, @Dao, @Database','Corrutinas: suspend y viewModelScope','Flow desde el DAO','Repository para centralizar el acceso','Pantallas: lista, agregar, editar, eliminar'],
-q:[['¿Qué anotaciones forman Room?','@Entity, @Dao y @Database.'],['¿Por qué las consultas van en corrutinas?','Para no bloquear el hilo principal de la interfaz.'],['¿Qué aporta el Repository?','Un solo punto de acceso a los datos, oculta de dónde vienen.']],
-cards:[['Entity','@Entity\ndata class Cliente(\n @PrimaryKey(autoGenerate=true)\n val id:Int=0,\n val nombre:String)'],['DAO','@Dao interface ClienteDao {\n @Query("SELECT * FROM Cliente")\n fun todos(): Flow<List<Cliente>>\n}'],['suspend','suspend fun guardar(c: Cliente)']],
-src:'Curso Google, Unit 6 (Data persistence con Room) y Unit 5 (corrutinas)'},
-{n:'Fase 7',t:'Login real con Firebase Authentication',goal:'Autenticar usuarios contra un servicio, no contra código local.',
-proj:'Cambiar el login de la Fase 4 para registrarse e ingresar con correo y clave.',
-flow:['Login UI','ViewModel','Firebase Auth','Sesión','Home'],
-topics:['Crear proyecto en la consola de Firebase y conectarlo a la app','Registro con correo y clave','Inicio y cierre de sesión','Detectar sesión activa al abrir la app','Manejo de errores (clave débil, correo ya usado)','Investiga: dónde guardar y qué NO subir a GitHub (google-services.json)'],
-q:[['¿Por qué usar un servicio de autenticación?','No guardas ni validas claves tú mismo; el servidor lo hace de forma segura.'],['¿Cómo sabes si ya hay sesión al abrir?','Consultando el usuario actual de Firebase Auth.'],['¿Qué haces ante error de red?','Mostrar mensaje claro en el UiState, no cerrar la app.']],
-cards:[['Registro','auth.createUserWith\n  EmailAndPassword(e, p)'],['Ingreso','auth.signInWith\n  EmailAndPassword(e, p)'],['Sesión','auth.currentUser != null']],
-src:'Curso Google «Android Basics with Compose and Firebase» y firebase.google.com/docs/auth'},
-{n:'Fase 8',t:'Proyecto final: app del mensajero',goal:'Unir todo y entregar algo que usarías de verdad.',
-proj:'Login → lista de clientes → marcar entrega → resumen del día. Código en GitHub con README.',
-flow:['Login','Clientes','Entrega','Resumen'],
-topics:['Dibujar en papel el mapa de pantallas antes de codificar','Estructura de carpetas por capas (ui, data)','Commits pequeños con mensajes claros','Probar en un teléfono real','Investiga: generar APK/AAB firmado','Escribir un README con capturas','Elegir tu siguiente app propia (por ejemplo el puesto de frutas con inventario)'],
-q:[['¿Por qué dibujar el mapa de pantallas antes?','Define rutas, datos y flujo antes de escribir código.'],['¿Qué capa NO debe conocer de la UI?','La capa de datos (Room, repositorio).'],['¿Cómo sabes que estás listo?','Puedes iniciar un proyecto nuevo desde cero sin copiar un tutorial.']],
-cards:[['Mapa de pantallas','Login → Lista → Detalle\n   ↘ Resumen'],['Capas','ui → viewmodel →\nrepository → datos'],['Meta','Una app propia,\nde cero, sin tutorial']],
-src:'Modern Android Development (developer.android.com/modern-android-development)'}
-];
+<!-- ============================ RUTA KOTLIN ============================ -->
+<main id="vista-kotlin" class="view">
+  <div class="wrap"></div>
+</main>
 
-function pct(p,i){let t=p.topics.length+2,d=0;p.topics.forEach((_,j)=>{if(S['t'+i+'_'+j])d++});if(S['p'+i])d++;if(S['q'+i])d++;return[d,t]}
-function render(){
- const m=document.getElementById('main');m.innerHTML='';let D=0,T=0;
- P.forEach((p,i)=>{
-  const [d,t]=pct(p,i);D+=d;T+=t;
-  const el=document.createElement('details');el.className='box ph';if(S['o'+i])el.open=true;
-  el.addEventListener('toggle',()=>{S['o'+i]=el.open;save()});
-  let h='<summary><span>'+p.n+': '+p.t+'</span><span class="pill">'+d+'/'+t+'</span></summary>';
-  h+='<p class="mut">Meta: '+p.goal+'</p><div class="flow">'+p.flow.map(x=>'<b>'+x+'</b>').join('<em>→</em>')+'</div>';
-  h+='<h3>Temas</h3>'+p.topics.map((x,j)=>'<label class="t"><input type="checkbox" data-k="t'+i+'_'+j+'"'+(S['t'+i+'_'+j]?' checked':'')+'><span>'+x+'</span></label>').join('');
-  h+='<h3>Proyecto práctico</h3><div class="proj"><label class="t"><input type="checkbox" data-k="p'+i+'"'+(S['p'+i]?' checked':'')+'><span>'+p.proj+'</span></label></div>';
-  h+='<h3>Autoevaluación (responde en tu cabeza, luego revela)</h3>'+p.q.map(x=>'<div class="q"><p>'+x[0]+'</p><details><summary class="mut">Ver respuesta</summary><p>'+x[1]+'</p></details></div>').join('');
-  h+='<label class="t"><input type="checkbox" data-k="q'+i+'"'+(S['q'+i]?' checked':'')+'><span>Respondí las preguntas sin ayuda</span></label>';
-  h+='<h3>Mis notas</h3><textarea data-n="n'+i+'" placeholder="Dudas, trucos, errores que me tocó resolver…"></textarea>';
-  h+='<p class="mut">Fuente base: '+p.src+'</p>';
-  el.innerHTML=h;m.appendChild(el);
-  el.querySelector('textarea').value=S['n'+i]||'';
- });
- m.querySelectorAll('input[type=checkbox]').forEach(c=>c.onchange=()=>{S[c.dataset.k]=c.checked;save();render()});
- m.querySelectorAll('textarea').forEach(a=>a.oninput=()=>{S[a.dataset.n]=a.value;save()});
- const g=Math.round(D/T*100);
- document.getElementById('gbar').style.width=g+'%';
- document.getElementById('gtxt').textContent='Avance total: '+g+'% ('+D+' de '+T+' pasos)';
- document.getElementById('cards').innerHTML=P.map(p=>p.cards.map(c=>{const d=document.createElement('div');d.className='cd';const a=document.createElement('h4');a.textContent=c[0];const s=document.createElement('small');s.textContent=p.n+': '+p.t;const pr=document.createElement('pre');pr.textContent=c[1];d.append(a,s,pr);return d.outerHTML}).join('')).join('');
-}
-function exportar(){const b=new Blob([JSON.stringify(S)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='avance-kotlin.json';a.click()}
-document.getElementById('imp').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{S=JSON.parse(t);save();render()}catch(x){alert('Archivo no válido')}})};
-function imprimir(){document.body.classList.add('pc');window.print();setTimeout(()=>document.body.classList.remove('pc'),500)}
-render();
-</script>
+<!-- ============================ RUTA INGLÉS ============================ -->
+<main id="vista-ingles" class="view">
+  <div class="wrap"></div>
+</main>
+
+<!-- Tarjetas imprimibles -->
+<section id="cards" aria-hidden="true"></section>
+
+<!-- ============================== PIE ============================== -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="profile">
+      <div class="avatar" aria-hidden="true">EC</div>
+      <div>
+        <h3>Eliasib C. — Ingeniero de Sistemas</h3>
+        <p class="muted">Diseño, contenido y mantenimiento de este sitio. Es un proyecto personal de aprendizaje continuo: las dos rutas se construyen con lo que practico en el trabajo real (desarrollo de software, bases de datos, AWS, Android) y con lo que aprendo para las entrevistas.</p>
+        <div class="links">
+          <a href="https://www.youtube.com/channel/UCKfpqhYwDoKaGYctopUxBfQ" target="_blank" rel="noopener">YouTube · Eliasib Hernandez</a>
+          <a href="https://www.linkedin.com/in/ingeniero-eliasib-c" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/ingeEliasib" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:ingenieroeliasibcadena@gmail.com">Contacto</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-cols">
+      <div>
+        <h4>Las dos rutas</h4>
+        <ul>
+          <li><a href="#/kotlin">Kotlin + Jetpack Compose</a> — 9 fases, de lo básico a publicar una app.</li>
+          <li><a href="#/ingles">Inglés para entrevistas</a> — 10 etapas, con audio y fichas de memoria.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Cómo se usa</h4>
+        <ul>
+          <li>El progreso se guarda en tu navegador, no en un servidor.</li>
+          <li>Exporta tu avance para no perderlo.</li>
+          <li>Las fichas se repasan con intervalos de 1, 2, 4 y 8 días.</li>
+          <li>Las tarjetas se imprimen en dos columnas.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tecnología</h4>
+        <ul>
+          <li>HTML, CSS y JavaScript sin dependencias ni build.</li>
+          <li>Audio con la Web Speech API del navegador.</li>
+          <li>Ilustraciones en SVG, sin imágenes externas.</li>
+          <li>Publicable tal cual en GitHub Pages.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="legal">
+      Contenido educativo verificado contra fuentes públicas el 15 de noviembre de 2026. Las frases prácticas del módulo de inglés proceden de las fuentes citadas en cada etapa; los guiones señalados como «modelo» son escritos para este sitio y no describen hechos reales.<br>
+      Código y textos bajo licencia Apache-2.0. Ver <a href="LICENSE">LICENSE</a> y el <a href="README.md">README</a> del repositorio.
+    </p>
+  </div>
+</footer>
+
+<input id="imp" type="file" accept=".json,application/json" hidden>
+
+<script src="assets/js/data-kotlin.js"></script>
+<script src="assets/js/data-ingles.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" role="img" aria-label="Ilustración: pantalla de Android con interface Jetpack Compose">
+  <title>Jetpack Compose: la interfaz se construye con código</title>
+  <defs>
+    <linearGradient id="kBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b7f5c" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#0b4551" stop-opacity=".06"/>
+    </linearGradient>
+    <linearGradient id="kPhone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef3f1"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="10" y="14" width="400" height="272" rx="18" fill="url(#kBg)"/>
+
+  <!-- teléfono -->
+  <rect x="56" y="26" width="150" height="248" rx="20" fill="url(#kPhone)" stroke="#1b7f5c" stroke-width="3"/>
+  <rect x="112" y="34" width="38" height="6" rx="3" fill="#cfd8d3"/>
+  <rect x="72" y="54" width="118" height="34" rx="9" fill="#1b7f5c" opacity=".15"/>
+  <circle cx="92" cy="71" r="10" fill="#1b7f5c"/>
+  <rect x="110" y="64" width="66" height="7" rx="3.5" fill="#1b7f5c" opacity=".7"/>
+  <rect x="110" y="76" width="44" height="6" rx="3" fill="#1b7f5c" opacity=".4"/>
+  <rect x="72" y="100" width="118" height="26" rx="7" fill="#e3f4ec"/>
+  <rect x="80" y="110" width="72" height="6" rx="3" fill="#1b7f5c" opacity=".55"/>
+  <rect x="72" y="136" width="55" height="66" rx="9" fill="#e3f4ec"/>
+  <rect x="135" y="136" width="55" height="66" rx="9" fill="#e3f4ec"/>
+  <circle cx="99" cy="160" r="12" fill="#1b7f5c" opacity=".55"/>
+  <rect cx="86" y="179" width="28" height="6" rx="3" fill="#1b7f5c" opacity=".45"/>
+  <circle cx="162" cy="160" r="12" fill="#1b7f5c" opacity=".55"/>
+  <rect x="149" y="179" width="28" height="6" rx="3" fill="#1b7f5c" opacity=".45"/>
+  <rect x="72" y="214" width="118" height="26" rx="13" fill="#1b7f5c"/>
+  <rect x="106" y="224" width="50" height="6" rx="3" fill="#ffffff" opacity=".85"/>
+  <rect x="92" y="252" width="78" height="5" rx="2.5" fill="#cfd8d3"/>
+
+  <!-- ventana de código -->
+  <rect x="228" y="58" width="164" height="150" rx="12" fill="#102a2a"/>
+  <rect x="228" y="58" width="164" height="22" rx="12" fill="#1b7f5c" opacity=".45"/>
+  <circle cx="242" cy="69" r="4" fill="#a7f3d0"/>
+  <circle cx="255" cy="69" r="4" fill="#a7f3d0" opacity=".6"/>
+  <circle cx="268" cy="69" r="4" fill="#a7f3d0" opacity=".35"/>
+  <g font-family="Consolas, Menlo, monospace" font-size="10" fill="#d8f3e6">
+    <text x="240" y="100">@Composable</text>
+    <text x="252" y="114" fill="#8fe3c0">fun Greeting(</text>
+    <text x="264" y="128">name: String</text>
+    <text x="252" y="142" fill="#8fe3c0">) {</text>
+    <text x="264" y="156">Text(</text>
+    <text x="276" y="170" fill="#ffe9a8">"Hola $name"</text>
+    <text x="264" y="184">)</text>
+    <text x="252" y="198" fill="#8fe3c0">}</text>
+  </g>
+
+  <!-- flecha código -> interfaz -->
+  <path d="M214 132 C 226 132, 222 132, 228 132" fill="none" stroke="#1b7f5c" stroke-width="3"/>
+  <path d="M222 126 L 229 132 L 222 138" fill="none" stroke="#1b7f5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- insignia de vista previa -->
+  <g>
+    <rect x="244" y="220" width="132" height="34" rx="10" fill="#ffffff" stroke="#1b7f5c" stroke-width="2.5"/>
+    <path d="M262 237 l7 7 l-7 7" fill="none" stroke="#1b7f5c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="278" y="242" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0b4551">@Preview</text>
+    <text x="278" y="252" font-family="system-ui, sans-serif" font-size="8.5" fill="#56626e">vista previa sin emulador</text>
+  </g>
+
+  <!-- insignia de Kotlin -->
+  <g>
+    <rect x="26" y="86" width="24" height="24" rx="6" fill="#0b4551"/>
+    <text x="38" y="103" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#a7f3d0">K</text>
+  </g>
+</svg>
