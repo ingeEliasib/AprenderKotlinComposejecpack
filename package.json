@@ -7,6 +7,9 @@
   "license": "Apache-2.0",
   "scripts": {
     "validate": "node scripts/validar-contenido.js",
+    "verify": "node scripts/verificar-navegacion.js",
+    "scan": "node scripts/escanear-texto.js",
+    "check:html": "node scripts/comprobar-html-temas.js",
     "serve": "python -m http.server 8000"
   },
   "keywords": ["kotlin", "jetpack-compose", "android", "ingles", "entrevista", "aprendizaje"]

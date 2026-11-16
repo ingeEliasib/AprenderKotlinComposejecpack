@@ -39,7 +39,9 @@ function esc(s) {
 }
 
 function speakBtn(text, label) {
-  return '<button class="speak" data-speak="' + esc(text) + '" type="button">' +
+  return '<button class="speak" data-speak="' + esc(text) + '" type="button"' +
+         ' title="Escuchar con la voz inglesa del navegador (púlsalo otra vez para parar)"' +
+         ' aria-label="Escuchar">' +
          '<span class="ico" aria-hidden="true">🔊</span>' +
          (label ? ' ' + esc(label) : '') + '</button>';
 }
@@ -51,43 +53,170 @@ function linksHTML(links) {
   ).join(' · ') + '</p>';
 }
 
+/* Un tema puede escribirse de dos formas:
+     'Texto del tema'                      → solo la casilla
+     { t:'Texto del tema', html:'<p>…</p>' } → casilla + la explicación
+   La segunda forma es la que convierte la lista de temas en clases: cada
+   tema lleva delante su teoría y el código mínimo para entenderla. */
+function temaHTML(tema, key) {
+  const texto = typeof tema === 'string' ? tema : tema.t;
+  const checked = S[key] ? ' checked' : '';
+  let h = '<label class="check"><input type="checkbox" data-k="' + key + '"' +
+          checked + '><span>' + esc(texto) + '</span></label>';
+  if (typeof tema !== 'string' && tema.html) {
+    h += '<div class="lesson">' + tema.html + '</div>';
+  }
+  return h;
+}
+
 /* ------------------------------ Audio (TTS) ------------------------------ */
 
+/* La síntesis de voz del navegador tiene tres fallos que hacen que «no pase
+   nada»: Chrome se traga la utterance si se llama a cancel() y a speak() en
+   el mismo instante, el motor puede quedarse en pausa, y las voces tardan
+   en cargar. Aquí se corrigen los tres y, sobre todo, se avisa al usuario
+   cuando algo falla en vez de fallar en silencio. */
 const TTS = {
   supported: typeof window !== 'undefined' && 'speechSynthesis' in window,
   voices: [],
+  actual: null,     // utterance en curso
+  boton: null,      // botón que la lanzó
+  aviso: null,      // temporizador del mensaje
+
   init() {
     if (!this.supported) return;
-    const load = () => { this.voices = window.speechSynthesis.getVoices() || []; };
-    load();
-    if (typeof window.speechSynthesis.onvoiceschanged !== 'undefined') {
-      window.speechSynthesis.onvoiceschanged = load;
+    this.cargarVoces();
+    if ('onvoiceschanged' in window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = () => this.cargarVoces();
+    }
+    // Chrome deja el motor en pausa cuando la pestaña pierde el foco.
+    window.addEventListener('focus', () => {
+      if (this.supported && window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
+    });
+  },
+
+  cargarVoces() {
+    if (!this.supported) return;
+    try {
+      this.voices = window.speechSynthesis.getVoices() || [];
+    } catch (e) {
+      this.voices = [];
     }
   },
+
   englishVoice() {
+    if (!this.voices.length) this.cargarVoces();
     const en = this.voices.filter(v => /^en([-_]|$)/i.test(v.lang || ''));
     if (!en.length) return null;
     return en.find(v => /^en[-_]US$/i.test(v.lang)) ||
            en.find(v => /^en[-_]GB$/i.test(v.lang)) ||
            en[0];
   },
+
+  limpiarBoton() {
+    if (this.boton) { delete this.boton.dataset.playing; this.boton = null; }
+  },
+
+  quitarAviso() {
+    if (this.aviso) { clearTimeout(this.aviso); this.aviso = null; }
+    const t = document.getElementById('aviso-audio');
+    if (t) t.className = '';
+  },
+
+  /* Mensaje visible: si el audio no funciona, el usuario tiene que saber
+     por qué y qué hacer, no quedarse pulsando un botón mudo. */
+  mensaje(texto, error) {
+    let t = document.getElementById('aviso-audio');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'aviso-audio';
+      t.setAttribute('role', 'status');
+      t.setAttribute('aria-live', 'polite');
+      document.body.appendChild(t);
+    }
+    t.textContent = texto;
+    t.className = 'visible' + (error ? ' error' : '');
+    if (this.aviso) clearTimeout(this.aviso);
+    this.aviso = setTimeout(() => { t.className = ''; }, 8000);
+  },
+
+  detener() {
+    if (this.supported) {
+      try { window.speechSynthesis.cancel(); } catch (e) { /* ignorar */ }
+    }
+    this.actual = null;
+    this.limpiarBoton();
+  },
+
   say(text, btn) {
     if (!this.supported) {
-      alert('Este navegador no tiene síntesis de voz. Usa Chrome, Edge o Safari para escuchar las frases.');
+      this.mensaje('Este navegador no tiene síntesis de voz. Usa Chrome, Edge o Safari para escuchar las frases.', true);
       return;
     }
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
+    if (!text || !String(text).trim()) return;
+
+    // Segunda pulsación del mismo botón: parar.
+    if (this.actual && this.boton === btn) {
+      this.detener();
+      this.quitarAviso();
+      return;
+    }
+
+    const synth = window.speechSynthesis;
+    this.detener();
+    this.quitarAviso();
+
+    const u = new SpeechSynthesisUtterance(String(text));
     u.lang = 'en-US';
     const v = this.englishVoice();
     if (v) u.voice = v;
     u.rate = 0.92;
     u.pitch = 1;
-    if (btn) btn.dataset.playing = '1';
-    const off = () => { if (btn) delete btn.dataset.playing; };
-    u.onend = off;
-    u.onerror = off;
-    window.speechSynthesis.speak(u);
+
+    let arranco = false;
+
+    u.onstart = () => {
+      arranco = true;
+      if (btn) btn.dataset.playing = '1';
+      this.quitarAviso();
+    };
+    u.onend = () => {
+      this.actual = null;
+      this.limpiarBoton();
+    };
+    u.onerror = ev => {
+      this.actual = null;
+      this.limpiarBoton();
+      const err = (ev && ev.error) || '';
+      if (err === 'canceled' || err === 'interrupted') return;  // lo paró el usuario
+      this.mensaje('No se pudo reproducir el audio (' + (err || 'error desconocido') +
+                   '). Prueba con Chrome o Edge, y abre el sitio con un servidor local.', true);
+    };
+
+    this.actual = u;
+    this.boton = btn;
+
+    // Chrome descarta la utterance si cancel() y speak() se ejecutan en el
+    // mismo ciclo: se cancela primero y se habla en el siguiente.
+    try { synth.cancel(); } catch (e) { /* ignorar */ }
+    setTimeout(() => {
+      if (this.actual !== u) return;            // se canceló mientras tanto
+      try {
+        if (synth.paused) synth.resume();
+        synth.speak(u);
+      } catch (e) {
+        this.mensaje('El navegador no pudo iniciar la voz. Prueba con Chrome o Edge.', true);
+      }
+    }, 60);
+
+    // Si no arranca en dos segundos, avisar en vez de callar.
+    setTimeout(() => {
+      if (this.actual === u && !arranco) {
+        this.mensaje('El navegador no está reproduciendo audio. Prueba con Chrome o Edge, o abre el sitio por https:// en lugar de file://.', true);
+      }
+    }, 2000);
   }
 };
 
@@ -148,7 +277,7 @@ function renderKotlin() {
   head.className = 'box';
   head.innerHTML =
     '<h2>Ruta Kotlin + Jetpack Compose</h2>' +
-    '<p class="muted">9 fases con fin claro: de «ya sé programar» a «publico mi propia app». Cada fase tiene un proyecto útil, temas verificables, preguntas de autoevaluación, notas personales y tarjetas imprimibles.</p>' +
+    '<p class="muted">Nueve fases: de leer Kotlin a publicar una app. Cada tema viene con su explicación y el código mínimo para entenderlo; cada fase, con un proyecto, preguntas de autoevaluación y un espacio para tus notas.</p>' +
     '<div class="progress-row" style="margin-top:12px">' +
       '<div class="bar"><i style="width:' + prog.pct + '%"></i></div>' +
       '<span class="pct">' + prog.pct + '%</span>' +
@@ -174,9 +303,8 @@ function renderKotlin() {
     h += '<p class="muted"><b>Meta:</b> ' + esc(p.goal) + '</p>';
     h += '<div class="flow">' + p.flow.map(x => '<b>' + esc(x) + '</b>').join('<em>→</em>') + '</div>';
 
-    h += '<h3>Temas</h3>' + p.topics.map((x, j) =>
-      '<label class="check"><input type="checkbox" data-k="' + prefix + 't' + i + '_' + j + '"' +
-      (S[prefix + 't' + i + '_' + j] ? ' checked' : '') + '><span>' + esc(x) + '</span></label>').join('');
+    h += '<h3>Temas de la fase</h3>' + p.topics.map((x, j) =>
+      temaHTML(x, prefix + 't' + i + '_' + j)).join('');
 
     h += '<h3>Proyecto práctico</h3><div class="proj"><label class="check">' +
       '<input type="checkbox" data-k="' + prefix + 'p' + i + '"' + (S[prefix + 'p' + i] ? ' checked' : '') +
@@ -298,7 +426,7 @@ function renderIngles() {
   head.className = 'box';
   head.innerHTML =
     '<h2>Inglés para entrevistas de ingeniería de software</h2>' +
-    '<p class="muted">10 etapas con principio y fin. No es inglés conversacional: es el inglés que se usa en una entrevista técnica real —presentación, preguntas de conducta, preguntas hipotéticas, vocabulario, errores y seguimiento—, con pronunciación auditable y fuentes públicas citadas.</p>' +
+    '<p class="muted">Diez etapas con el contenido completo de cada una: qué evalúan, cómo se responde y qué frases decir en voz alta. No es inglés conversacional, es el que se usa en una entrevista técnica.</p>' +
     '<div class="progress-row" style="margin-top:12px">' +
       '<div class="bar eng"><i style="width:' + prog.pct + '%"></i></div>' +
       '<span class="pct">' + prog.pct + '%</span>' +
@@ -310,7 +438,8 @@ function renderIngles() {
       '<button class="btn ghost" data-action="import" type="button">Importar avance</button>' +
       '<button class="btn ghost" data-action="reset" type="button">Reiniciar</button>' +
     '</div>' +
-    '<p class="muted small">Cada frase lleva botón de audio: usa la síntesis de voz inglesa de tu navegador. El avance se guarda solo en este navegador.</p>';
+    '<p class="muted small">Cada frase lleva botón de audio: usa la síntesis de voz inglesa de tu navegador (pulsa otra vez para parar). El avance se guarda solo en este navegador.</p>' +
+    (TTS.supported ? '' : '<p class="note warn" style="margin-top:10px"><b>Tu navegador no tiene síntesis de voz</b>, así que los botones 🔊 no sonarán. Usa Chrome, Edge o Safari. El resto de la ruta funciona igual: la pronunciación de referencia está en la transcripción IPA de cada palabra.</p>');
   wrap.appendChild(head);
 
   P.forEach((p, i) => {
@@ -324,14 +453,14 @@ function renderIngles() {
     h += '<p class="muted"><b>Meta:</b> ' + esc(p.goal) + '</p>';
     h += '<div class="flow eng">' + p.flow.map(x => '<b>' + esc(x) + '</b>').join('<em>→</em>') + '</div>';
 
-    h += '<h3>Temas</h3>' + p.topics.map((x, j) =>
-      '<label class="check"><input type="checkbox" data-k="' + prefix + 't' + i + '_' + j + '"' +
-      (S[prefix + 't' + i + '_' + j] ? ' checked' : '') + '><span>' + esc(x) + '</span></label>').join('');
+    h += '<h3>Temas de la etapa</h3>' + p.topics.map((x, j) =>
+      temaHTML(x, prefix + 't' + i + '_' + j)).join('');
 
     h += '<h3>Práctica</h3><div class="proj"><label class="check">' +
       '<input type="checkbox" data-k="' + prefix + 'p' + i + '"' + (S[prefix + 'p' + i] ? ' checked' : '') +
       '><span>' + esc(p.proj) + '</span></label></div>';
 
+    h += '<h3>La clase</h3>';
     h += renderBlocks(p.blocks);
 
     h += '<h3>Autoevaluación (responde en tu cabeza, luego revela)</h3>' +

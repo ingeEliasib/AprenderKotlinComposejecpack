@@ -38,6 +38,18 @@ function validarFase(f, etiqueta, indice) {
     if (typeof f[campo] !== 'string' || !f[campo].trim()) err(`${pre} falta o vacío el campo "${campo}"`);
   }
   if (!Array.isArray(f.topics) || !f.topics.length) err(`${pre} "topics" debe ser un array con contenido`);
+  /* Un tema puede ser una cadena suelta o un objeto {t, html}: en el segundo
+     caso es un tema con su explicación (la "clase" del tema). */
+  (f.topics || []).forEach((t, j) => {
+    const preT = `${pre} tema ${j}:`;
+    if (typeof t === 'string') {
+      if (!t.trim()) err(`${preT} está vacío`);
+      return;
+    }
+    if (!t || typeof t !== 'object') return err(`${preT} debe ser texto o un objeto {t, html}`);
+    if (!t.t || typeof t.t !== 'string' || !t.t.trim()) err(`${preT} falta "t" (el título del tema)`);
+    if (!t.html || typeof t.html !== 'string' || !t.html.trim()) err(`${preT} falta "html" (la explicación del tema)`);
+  });
   if (!Array.isArray(f.flow) || f.flow.length < 2) err(`${pre} "flow" debe tener al menos 2 pasos`);
   if (!Array.isArray(f.q) || !f.q.length) err(`${pre} "q" (autoevaluación) vacía`);
   (f.q || []).forEach((par, i) => {

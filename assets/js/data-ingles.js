@@ -66,6 +66,12 @@ const INGLES_PATH = [
       '<b>Hipotética:</b> la situación es inventada por el entrevistador. No hay STAR; se evalúa <b>el proceso de razonamiento</b>: cómo planteas el problema, qué supuestos asumes, qué alternativas consideras y por qué recomiendas una.',
       '<b>Error clásico:</b> responder una pregunta hipotética contando una anécdota real. Google lo dice de forma explícita: las preguntas están diseñadas «so that candidates cannot solve them from job experience alone».'
     ]},
+    {type:'table', title:'La escala de calificación, etapa por etapa', head:['Nivel','Qué significa','Cómo se ve en tu respuesta'], rows:[
+      ['<b>Outstanding</b>','Supera el nivel esperado para el puesto.','Trae estructura (STAR), un dato concreto y una conclusión. En una hipotética, dos alternativas comparadas con el mismo criterio y una recomendación.'],
+      ['<b>Solid</b>','Cumple el nivel esperado para el puesto.','La respuesta está bien plantada y llega a algo válido. Es la nota de quien sí puede hacer ese trabajo.'],
+      ['<b>Borderline</b>','Se acerca al nivel esperado, pero con huecos.','Hay señales, pero no evidencia: es general, no trae datos y no cierra.'],
+      ['<b>Poor</b>','No muestra el atributo que se evalúa.','No hay ejemplo, o el ejemplo no se relaciona con lo que se preguntó. Una respuesta genérica sin ninguna situación real cae aquí.']
+    ], note:'<p>Google documenta, para cada atributo, ejemplos ilustrativos de lo que cubre una respuesta <i>poor</i>, <i>borderline</i>, <i>solid</i> y <i>outstanding</i>. El contenido exacto de cada ejemplo cambia según el puesto: por eso lo que te sirve a ti no es memorizar el ejemplo, sino <b>reconocer la forma</b> de cada nivel en tus propias respuestas.</p><p>Una consecuencia práctica: el mismo contenido puede ser <i>solid</i> en una respuesta y <i>poor</i> en otra, según cómo lo cuentes. No es que te falten cosas: es que la forma de darlas es lo que se califica.</p>', links:[['re:Work — entrevista estructurada','https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices']]},
     {type:'note', title:'El error de idioma más caro de esta etapa', html:'<p>Cuando te sientes bajo presión en inglés, el cerebro traduce <i>literalmente</i> y suena raro. La estrategia que funciona: <b>aprende frases completas, no palabras sueltas</b>. En las etapas siguientes hay bloques de frases con botón de audio: memorízalas como bloques y úsalas tal cual, con tus datos.</p><p>El botón de audio usa la <b>síntesis de voz del navegador</b> (Web Speech API) con voz inglesa: es tu referencia de pronunciación, no una fuente de contenido. El contenido de las frases es real y está citado.</p>', links:[['MDN — Web Speech API','https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API']]}
   ]
 },
@@ -231,27 +237,27 @@ const INGLES_PATH = [
        star:'Fortaleza: una, con evidencia (un proyecto donde se vio). Debilidad: una real, con qué estás haciendo para mejorarla y un ejemplo de progreso. Nunca «no tengo debilidades».',
        follow:'¿Qué has hecho concretamente para mejorarla?'},
       {q:'Where do you see yourself in five years?', es:'¿Dónde te ves dentro de cinco años?',
-       listens:'Coherencia entre lo que dices querer y el puesto que offering. Se evalúa si tus expectativas son realistas con la vacante.',
-       star:'Enfócate en el rol: seguir creciendo en ingeniería de software, transfers a mobile/ cloud, leadership técnico. Conecta con la empresa, no con tu vida personal.',
+       listens:'Coherencia entre lo que dices querer y el puesto que ofrecen. Se evalúa si tus expectativas son realistas con la vacante.',
+       star:'Enfócate en el rol: seguir creciendo en ingeniería de software, dar el paso a mobile o a la nube, asumir liderazgo técnico. Conecta con la empresa, no con tu vida personal.',
        follow:'¿Cómo lo relacionas con el puesto que estamos cubriendo?'},
       {q:'Why are you leaving your current job?', es:'¿Por qué dejas tu trabajo actual?',
        listens:'Grow with Google: sé honesto, pero positivo y profesional. Nunca critiques a tu empleador anterior.',
-       star:'Motivo real y profesional: crecimiento tÃ©cnico, un reto nuevo, cambio de ciudad, la bÃºsqueda de un equipo con un producto que meociupe de verdad. Sin drama y sin comparar salarios en la primera frase.',
+       star:'Motivo real y profesional: crecimiento técnico, un reto nuevo, cambio de ciudad, la búsqueda de un equipo con un producto que me ocupe de verdad. Sin drama y sin comparar salarios en la primera frase.',
        follow:'¿Qué harías distinto aquí?'}
     ]},
-    {type:'note', title:'Las tres follow-up questions de un entrevistador estructurado', html:'<p>Google re:Work explica que cada pregunta va acompañada de <b>preguntas de seguimiento predeterminadas</b>, pensadas para obligarte a detallar el proceso, y que el entrevistador <b>no las improvisa</b>. Para la pregunta de conducta que publica como ejemplo, las follow-ups son:</p><ul><li><b>«What was your primary goal and why?»</b> — ¿cuál era el objetivo principal y por qué?</li><li><b>«How did your teammates respond?»</b> — ¿cómo respondieron tus compañeros?</li><li><b>«Moving forward, what\'s your plan?»</b> — ¿y ahora cuál es tu plan?</li></ul><p>Lapalabra clave es <b>why</b>: prepárate para el <i>por qué</i> de cada decisión que tomaste. Ahí es donde las historias bien contadas se separan de las que suenan a guion.</p>', links:[['re:Work — preguntas de seguimiento predeterminadas','https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices']]},
+    {type:'note', title:'Las tres follow-up questions de un entrevistador estructurado', html:'<p>Google re:Work explica que cada pregunta va acompañada de <b>preguntas de seguimiento predeterminadas</b>, pensadas para obligarte a detallar el proceso, y que el entrevistador <b>no las improvisa</b>. Para la pregunta de conducta que publica como ejemplo, las follow-ups son:</p><ul><li><b>«What was your primary goal and why?»</b> — ¿cuál era el objetivo principal y por qué?</li><li><b>«How did your teammates respond?»</b> — ¿cómo respondieron tus compañeros?</li><li><b>«Moving forward, what\'s your plan?»</b> — ¿y ahora cuál es tu plan?</li></ul><p>La palabra clave es <b>why</b>: prepárate para el <i>por qué</i> de cada decisión que tomaste. Ahí es donde las historias bien contadas se separan de las que suenan a guion.</p>', links:[['re:Work — preguntas de seguimiento predeterminadas','https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices']]},
     {type:'list', title:'Errores que descalifican una respuesta de conducta', items:[
       '<b>Contar la historia en presente.</b> Es una anécdota, no un hecho: usa pasado.',
       '<b>Contar la historia del equipo con «we» y nada de «I».</b> El evaluador no puede saber qué hiciste tú.',
       '<b>Terminar sin resultado.</b> Si no hay resultado, no hay STAR; hay anécdota.',
-      '<b>Inventar una episodioHeroico que no ocurrió.</b> Las follow-up questions la desarman en dos minutos.',
+      '<b>Inventar un episodio heroico que no ocurrió.</b> Las follow-up questions la desarman en dos minutos.',
       '<b>Ir más de tres minutos.</b> Hay 45 minutos de entrevista y varias preguntas: sé conciso.'
     ]}
   ]
 },
 {
   n:'Etapa 4', t:'Preguntas situacionales e hipotéticas: cómo piensas en voz alta',
-  goal:'Responder preguntas que no tienen historia previa: la evaluator quiere ver tu razonamiento.',
+  goal:'Responder preguntas que no tienen historia previa: el evaluador quiere ver tu razonamiento.',
   proj:'Escribir la respuesta completa a una pregunta hipotética y ensayarla en voz alta cronometrada.',
   flow:['Aclarar','Descomponer','Opciones','Trade-offs','Recomendación'],
   topics:[
@@ -302,10 +308,10 @@ const INGLES_PATH = [
   topics:[
     'Por qué las entrevistas son bidireccionales',
     'Las dos preguntas de référence publicadas por Grow with Google',
-    'Preguntas de proceso (siguientes pasos, timeline, Salary)',
+    'Preguntas de proceso (siguientes pasos, timeline, salario)',
     'Preguntas de equipo y de reto técnico',
     'Preguntas de crecimiento y de carrera',
-    'Cómo cerrar sin quedarFontsBold'
+    'Cómo cerrar la entrevista sin dejarla a medias'
   ],
   q:[
     ['¿Cuál es la mejor pregunta que puedo hacer?','La que demuestra que pensaste en cómo sería trabajar ahí: qué significa el éxito en ese puesto.'],
@@ -407,14 +413,14 @@ const INGLES_PATH = [
 },
 {
   n:'Etapa 7', t:'Errores típicos de hispanohablantes en entrevista',
-  goal:'Eliminar los errores que mÃ¡s se oyen en una entrevista en inglÃ©s.',
+  goal:'Eliminar los errores que más se oyen en una entrevista en inglés.',
   proj:'Revisar la tabla, marcar los que cometes y rehacer tu presentación y dos respuestas STAR.',
   flow:['Detectar','Corregir','Repetir'],
   topics:[
     'Errores de preposición y de gerundio',
     'Errores de artículos y de contable/no contable',
     'Errores de tiempo verbal y de concordancia',
-    'Errores defalse friend que suenan naturales en español',
+    'Errores de false friend que suenan naturales en español',
     'El vicio de traducir el CV literal'
   ],
   q:[
@@ -457,7 +463,7 @@ const INGLES_PATH = [
 {
   n:'Etapa 8', t:'Fichas de memoria: repaso espaciado de lo esencial',
   goal:'Fijar las 26 fichas clave del módulo con un sistema de repetición espaciada.',
-  proj:'Repasar las fichas cada dÃ­a hasta que todas pasen a nivel 3 (dominadas).',
+  proj:'Repasar las fichas cada día hasta que todas pasen a nivel 3 (dominadas).',
   flow:['Repasar','Marcar','Volver en días'],
   topics:[
     'Cómo funciona el repaso espaciado de este módulo',
@@ -495,7 +501,7 @@ const INGLES_PATH = [
   q:[
     ['¿Cuánto dura un ensayo?','Una simulación completa debe durar unos 45 minutos, como una ronda real de entrevista.'],
     ['¿Qué hago si me quedo en blanco?','Di la frase de relleno y avanza: «That\'s a good question, let me think for a second.» Perder diez segundos es mejor que el silencio.'],
-    ['Â¿CuÃ¡ndo se envÃ­a el seguimiento?','Dentro de las 24 horas. Grow with Google lo recomienda explÃ­citamente: un mensaje breve que mencione algo concreto de la conversaciÃ³n y que muestre tu interÃ©s real.']
+    ['¿Cuándo se envía el seguimiento?','Dentro de las 24 horas. Grow with Google lo recomienda explícitamente: un mensaje breve que mencione algo concreto de la conversación y que muestre tu interés real.']
   ],
   cards:[
     ['Antes','Investiga la empresa\ny escribe 3 preguntas.'],
@@ -513,7 +519,7 @@ const INGLES_PATH = [
     ]},
     {type:'checklist', title:'Checklist del día de la entrevista', groups:[
       {t:'Antes (el día anterior)', items:['Repaso de fichas (10 min).','Historia fresca ensayada en voz alta (15 min).','Cuestionario: ¿cómo se llama el interviewer? ¿cuánto dura? ¿quién más está? (Google: «Structure the candidate experience»).','Copias de tu CV impresas, si es presencial.','Prueba de audio y cámara si es virtual.']},
-      {t:'Durante', items:['Habla despacio y claro: Grow with Google lo recomienda expresamente.','Responde con STAR en las de conducta; con los 5 pasos en las hipotéticas.','Si no entiendes la pregunta, pide que la repitan: «Could you rephrase that?» No es un defecto.','Números concretos en lugar de adjetivos.','Toma notas de los nombres y de lo que promised.']},
+      {t:'Durante', items:['Habla despacio y claro: Grow with Google lo recomienda expresamente.','Responde con STAR en las de conducta; con los 5 pasos en las hipotéticas.','Si no entiendes la pregunta, pide que la repitan: «Could you rephrase that?» No es un defecto.','Números concretos en lugar de adjetivos.','Toma notas de los nombres y de lo que te prometieron.']},
       {t:'Después (mismo día)', items:['Anota qué te preguntaron y qué respondiste (sirve para la siguiente entrevista).','Envía el correo de seguimiento dentro de las 24 horas.','Actualiza el estado de tu candidatura.']}
     ]},
     {type:'script', title:'Plantilla de correo de seguimiento (escrita para este sitio)', body:'<p class="en-line"><b>Subject: Thank you — [Role title] interview</b></p><p class="en-line"><b>Hi [Name],</b><br><br><b>Thank you for taking the time to speak with me on [day] about the [role title] position. I especially enjoyed our conversation about [the specific topic you talked about: for example, how the team handles technical debt / how the release process works].</b><br><br><b>Your explanation of [X] gave me a much clearer picture of what the role involves, and it confirmed my interest in joining the team.</b><br><br><b>I\'m happy to provide any additional information or code samples you might need. Please let me know if there\'s anything else I can help with.</b><br><br><b>Best regards,<br>[Tu nombre]</b></p>', note:'<p><b>Reglas de la plantilla</b> (según Grow with Google: breve, mencionando algo concreto de la conversación, dentro de las 24 horas): (1) nombra algo <b>concreto</b> de la conversación, no genéricos; (2) confirma el interés en el puesto; (3) ofrece lo que falte; (4) si no hay nada más, no lo estires.</p><p>Si te hicieron una pregunta de diseño o de código y te fue bien, puedes añadir una línea: <i>«I also enjoyed the discussion about [X]; I\'d be happy to walk you through my approach in more detail.»</i></p>'},
@@ -523,7 +529,7 @@ const INGLES_PATH = [
       {en:'Thank you for letting me know. Please let me know if you need anything else from my side.', es:'Gracias por avisarme. Avísame si necesitan algo más de mi parte.'},
       {en:'I\'ll follow up with an email summarizing our conversation.', es:'Enviaré un correo resumiendo nuestra conversación.'}
     ]},
-    {type:'note', title:'QuÃ© se espera al terminar este mÃ³dulo', html:'<p>Si completaste las 10 etapas: tienes una presentaciÃ³n de 60 segundos grabada y cronometrada, 3 historias en STAR escritas, 12 preguntas de conducta con guÃ­a, un mÃ©todo para preguntas hipotÃ©ticas, 5 preguntas propias, 28 palabras tÃ©cnicas con pronunciaciÃ³n, la tabla de errores corregida, las 26 fichas en repaso espaciado y un plan de 5 dÃ­as listo para repetir antes de cada entrevista.</p><p>Lo que <b>no</b> te va a dar: la garantÃ­a de que la entrevista saldrÃ¡ bien. Lo que sÃ­ te da es que, cuando el inglÃ©s se te mezclan las ideas, tienes una estructura que no depende de tu nivel de inglÃ©s para improvisar. Esa es la diferencia entre un candidato que entiende la pregunta y uno que ademÃ¡s la responde.</p>'}
+    {type:'note', title:'Qué se espera al terminar este módulo', html:'<p>Si completaste las 10 etapas: tienes una presentación de 60 segundos grabada y cronometrada, 3 historias en STAR escritas, 12 preguntas de conducta con guía, un método para preguntas hipotéticas, 5 preguntas propias, 28 palabras técnicas con pronunciación, la tabla de errores corregida, las 26 fichas en repaso espaciado y un plan de 5 días listo para repetir antes de cada entrevista.</p><p>Lo que <b>no</b> te va a dar: la garantía de que la entrevista saldrá bien. Lo que sí te da es que, cuando el inglés se te mezclan las ideas, tienes una estructura que no depende de tu nivel de inglés para improvisar. Esa es la diferencia entre un candidato que entiende la pregunta y uno que además la responde.</p>'}
   ]
 }
 ];
@@ -554,7 +560,7 @@ const INGLES_FLASHCARDS = [
   {f:'«I\'m responsible for the migration.»', b:'Preposición «for», no «of». (Etapa 7)', s:'I\'m responsible for the migration.'},
   {f:'«I have experience in…» / «I\'ve worked for 11 years.»', b:'Experience es incontable: sin «a». Ambas formas son correctas. (Etapa 7)', s:'I\'ve worked for eleven years.'},
   {f:'«I built the application for Android.»', b:'Se construye (build), no se «hace» (make). (Etapa 7)', s:'I built the application for Android.'},
-  {f:'Vocabulario: «algorithm» /ˈæl.ɡər.ɪ.ðəm/', b:' pronunciación: «ál-gue-ri-dum». (Etapa 6)', s:'algorithm'},
+  {f:'Vocabulario: «algorithm» /ˈæl.ɡər.ɪ.ðəm/', b:'pronunciación: «ál-gue-ri-dum». (Etapa 6)', s:'algorithm'},
   {f:'Vocabulario: «schedule» /ˈskedʒ.uːl/ (US) · /ˈʃedʒ.uːl/ (UK)', b:'«sked-yul» en US, «ched-yul» en UK. (Etapa 6)', s:'schedule'},
   {f:'Vocabulario: «latency» /ˈleɪ.tən.si/', b:'«lei-ten-si». Métrica clave en una respuesta técnica. (Etapa 6)', s:'latency'},
   {f:'Vocabulario: «rollback» /ˈrəʊl.bæk/ y «regression» /rɪˈɡreʃ.ən/', b:'«RÓUL-bak» y «ri-GRE-shon». Dos palabras que todo ingeniero usa. (Etapa 6)', s:'rollback'},
