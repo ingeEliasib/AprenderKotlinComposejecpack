@@ -53,7 +53,8 @@ La tabla completa de fuentes está en la portada del sitio (`De dónde sale todo
 │   ├── verificar-navegacion.js    # Comprueba en un navegador simulado que todo funciona
 │   ├── comprobar-html-temas.js    # Comprueba el HTML de las explicaciones de los temas
 │   ├── escanear-texto.js          # Busca texto corrupto (mojibake, mezclas de idiomas)
-│   └── reparar-mojibake.js        # Repara el mojibake si vuelve a colarse
+│   ├── reparar-mojibake.js        # Repara el mojibake si vuelve a colarse
+│   └── ver-fase.js                # Muestra una fase renderizada en texto plano
 └── assets/
     ├── css/
     │   └── styles.css             # Estilos, tema, responsive e impresión
@@ -228,6 +229,13 @@ sin escapar dentro de un bloque de código rompe la página:
 
 ```bash
 npm run check:html
+```
+
+### Revisar una fase sin abrir el navegador
+
+```bash
+npm run ver:fase -- 1 kotlin     # la fase 1 de la ruta Kotlin, en texto plano
+npm run ver:fase -- 0 ingles     # la etapa 0 de la ruta de inglés
 ```
 
 ---
